@@ -102,17 +102,17 @@ Goal: end-to-end chat UI streaming from FastAPI, no real retrieval yet.
 
 Goal: SEC filings in the corpus are parsed, chunked, embedded, and stored in Supabase.
 
-- [ ] `ingest/` scripts (or CLI entrypoint) for one-off corpus loading
-- [ ] HTML → normalized Markdown extraction (preserve page/section metadata)
-- [ ] Chunking strategy (size + overlap; store chunk index, page, section, ticker, filing type, year)
-- [ ] Write `source_documents` rows with filing metadata from `manifest.json`
-- [ ] Write `document_chunks` rows with text + metadata
-- [ ] OpenAI embedding generation → store `vector(1536)` per chunk
-- [ ] Generated `tsvector` populated for full-text search
-- [ ] Idempotent re-run (skip already-ingested documents)
-- [ ] Unit tests: chunking logic, metadata extraction
-- [ ] Run ingestion on full sample corpus (25 filings × 5 companies)
-- [ ] Verify: chunks exist in Supabase; spot-check a known passage (e.g. Apple revenue mix table)
+- [x] `ingest/` scripts (or CLI entrypoint) for one-off corpus loading
+- [x] HTML → normalized Markdown extraction (preserve page/section metadata)
+- [x] Chunking strategy (size + overlap; store chunk index, page, section, ticker, filing type, year)
+- [x] Write `source_documents` rows with filing metadata from `manifest.json`
+- [x] Write `document_chunks` rows with text + metadata
+- [x] OpenAI embedding generation → store `vector(1536)` per chunk
+- [x] Generated `tsvector` populated for full-text search
+- [x] Idempotent re-run (skip already-ingested documents)
+- [x] Unit tests: chunking logic, metadata extraction
+- [x] Run ingestion on full sample corpus (25 filings × 5 companies)
+- [x] Verify: chunks exist in Supabase; spot-check a known passage (e.g. Apple revenue mix table)
 
 ---
 
@@ -120,13 +120,13 @@ Goal: SEC filings in the corpus are parsed, chunked, embedded, and stored in Sup
 
 Goal: a user question returns ranked, relevant source passages.
 
-- [ ] `retrieval/queries.py` — pgvector semantic search over `document_chunks`
-- [ ] `retrieval/queries.py` — Postgres full-text search over `search_vector`
-- [ ] `retrieval/fusion.py` — Reciprocal Rank Fusion in Python
-- [ ] `retrieval/retriever.py` — query → fused ranked passages + neighbor chunks
-- [ ] Unit tests: fusion ranking, query assembly (mock DB)
-- [ ] Integration test (optional, `@pytest.mark.integration`): real query against ingested corpus
-- [ ] Verify: test queries from [client-brief](client-brief.md) return relevant chunks (manual or scripted)
+- [x] `retrieval/queries.py` — pgvector semantic search over `document_chunks`
+- [x] `retrieval/queries.py` — Postgres full-text search over `search_vector`
+- [x] `retrieval/fusion.py` — Reciprocal Rank Fusion in Python
+- [x] `retrieval/retriever.py` — query → fused ranked passages + neighbor chunks
+- [x] Unit tests: fusion ranking, query assembly (mock DB)
+- [x] Integration test (optional, `@pytest.mark.integration`): real query against ingested corpus
+- [x] Verify: test queries from [client-brief](client-brief.md) return relevant chunks (manual or scripted)
 
 ---
 
@@ -134,18 +134,18 @@ Goal: a user question returns ranked, relevant source passages.
 
 Goal: grounded answers with enforced citations — the core product contract.
 
-- [ ] `assistant/instructions.md` — product contract (cite everything, refuse to invent, no stock picks)
-- [ ] PydanticAI agent with typed deps (`DocumentAgentDeps`) and output (`GroundedAnswer`)
-- [ ] Agent tools: `search_filings`, `read_chunk`, `read_surrounding_chunks`
-- [ ] `chat/orchestrator.py` — one turn: retrieve → agent → validate → stream → persist
-- [ ] `grounding/validator.py` — every citation maps to a retrieved passage; fail closed on violation
-- [ ] `chat/streaming.py` — AI SDK-compatible stream (text deltas + citation metadata parts)
-- [ ] Persist `message_citations` linked to assistant messages
-- [ ] Unit tests: citation validation, grounding enforcement, message conversion
-- [ ] Verify against [client-brief example questions](client-brief.md#example-analyst-questions):
-  - [ ] Answers cite specific filings and pages
-  - [ ] Under-specified questions get "not enough evidence" responses
-  - [ ] Question 10 (generative AI margins) refuses to infer beyond filings
+- [x] `assistant/instructions.md` — product contract (cite everything, refuse to invent, no stock picks)
+- [x] PydanticAI agent with typed deps (`DocumentAgentDeps`) and output (`GroundedAnswer`)
+- [x] Agent tools: `search_filings`, `read_chunk`, `read_surrounding_chunks`
+- [x] `chat/orchestrator.py` — one turn: retrieve → agent → validate → stream → persist
+- [x] `grounding/validator.py` — every citation maps to a retrieved passage; fail closed on violation
+- [x] `chat/streaming.py` — AI SDK-compatible stream (text deltas + citation metadata parts)
+- [x] Persist `message_citations` linked to assistant messages
+- [x] Unit tests: citation validation, grounding enforcement, message conversion
+- [x] Verify against [client-brief example questions](client-brief.md#example-analyst-questions):
+  - [x] Answers cite specific filings and pages
+  - [x] Under-specified questions get "not enough evidence" responses
+  - [x] Question 10 (generative AI margins) refuses to infer beyond filings
 
 ---
 
@@ -153,12 +153,12 @@ Goal: grounded answers with enforced citations — the core product contract.
 
 Goal: analysts can verify every claim in one click — this is what makes the product usable.
 
-- [ ] Citation chips/links on assistant messages (company, filing type, date, page/section)
-- [ ] Source passage panel — show underlying excerpt for selected citation
-- [ ] Empty states (no threads, no corpus match)
-- [ ] Error states (auth expired, retrieval failure, grounding failure, network/CORS)
-- [ ] Loading/streaming status during assistant run
-- [ ] Verify: click a citation → see the exact passage from the filing
+- [x] Citation chips/links on assistant messages (company, filing type, date, page/section)
+- [x] Source passage panel — show underlying excerpt for selected citation
+- [x] Empty states (no threads, no corpus match)
+- [x] Error states (auth expired, retrieval failure, grounding failure, network/CORS)
+- [x] Loading/streaming status during assistant run
+- [x] Verify: click a citation → see the exact passage from the filing
 
 ---
 
