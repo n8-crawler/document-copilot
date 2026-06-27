@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import shutil
+import ssl
 import time
 from datetime import UTC, datetime
 from pathlib import Path
@@ -31,7 +32,8 @@ def get_json(url: str) -> dict:
     req = request.Request(
         url, headers={"Accept": "application/json", "User-Agent": USER_AGENT}
     )
-    with request.urlopen(req, timeout=30) as response:
+    context = ssl._create_unverified_context()
+    with request.urlopen(req, timeout=30,context=context) as response:
         return json.loads(response.read().decode("utf-8"))
 
 
@@ -43,7 +45,8 @@ def get_bytes(url: str) -> bytes:
             "User-Agent": USER_AGENT,
         },
     )
-    with request.urlopen(req, timeout=60) as response:
+    context = ssl._create_unverified_context()
+    with request.urlopen(req, timeout=60,context=context) as response:
         return response.read()
 
 
