@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
+from backend.app.routers import users
 
 app = FastAPI(
     title="Document Copilot API",
@@ -17,14 +18,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"], 
 )
-
-
-@app.get("/", tags=["Health"])
-async def root():
-    return {
-        "message": "Document Copilot API is running",
-        "status": "success",
-    }
+app.include_router(router=users.router)
 
 
 @app.get("/health", tags=["Health"])
