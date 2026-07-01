@@ -17,4 +17,4 @@ class ChatMessage(base):
     completion_tokens = Column(Integer)
     created_at = Column(DateTime,default = datetime.now)
 
-    thread = relationship('Chatthreads',back_populates='message')
+    thread = relationship('ChatThread',back_populates='messages')

@@ -13,10 +13,9 @@ class UserUpdate(BaseModel):
     email:EmailStr | None = None
 
 class UserResponse(BaseModel):
-    id = UUID
+    id : UUID
     username:str
     email:EmailStr
-    password:str
-    created_on = datetime
+    created_on : datetime
     # this creates a python dict of users data rather than db object which cant be understood to pydantic so its serialing db object data
     model_config = ConfigDict(from_attributes = True)
