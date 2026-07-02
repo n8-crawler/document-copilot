@@ -13,18 +13,20 @@ def run_pipeline():
     all_rows = db.query(DocumentChunk).filter(DocumentChunk.embedding == None).all()
     load_model =EmbeddingGenerator()
 
-    for rows in all_rows:
+    for i,rows in enumerate(all_rows):
         content_text = rows.content
         embeddings = load_model.generate_embeddings(content_text)
         # here rows are actual sqlalchemy objects having DocumentChunk.embedding == None only those are processed
         Embeddingloader(db).save_embedding(chunk=rows,embedding=embeddings,embedding_model=settings.EMBEDDING_MODEL)
-        
+        if i % 100 == 0:
+            print(f'Processed {i} rows and committed to database')
+            db.commit()
     db.commit()
     print('Embeddings saved to Db')
     db.close()
 
 if __name__== "__main__":
-    
+
     run_pipeline()
 
 
