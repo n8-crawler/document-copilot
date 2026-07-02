@@ -12,7 +12,7 @@ class DocumentChunk(base):
     document_id = Column(UUID(as_uuid=True),ForeignKey('source_documents.id',ondelete='CASCADE'),nullable=False)
     chunk_index = Column(Integer,nullable = False)
     content = Column(Text,nullable=False)
-    embedding = Column(Vector(1536),nullable=True)
+    embedding = Column(Vector(1024),nullable=True)
     token_count = Column(Integer)
     created_at = Column(DateTime,default=datetime.now)
 

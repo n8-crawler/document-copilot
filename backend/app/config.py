@@ -13,10 +13,9 @@ class Settings(BaseSettings):
     # Database
     DATABASE_URL: str
 
-    # OpenAI
-    OPENAI_API_KEY: str
-    OPENAI_EMBEDDING_MODEL: str
-    OPENAI_EMBEDDING_DIMENSIONS: int
+    # Hugging Face
+    EMBEDDING_MODEL: str
+    EMBEDDING_DIMENSIONS: int
 
     # CORS
     ALLOWED_ORIGINS: str
