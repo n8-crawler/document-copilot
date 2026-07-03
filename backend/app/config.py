@@ -17,6 +17,11 @@ class Settings(BaseSettings):
     EMBEDDING_MODEL: str
     EMBEDDING_DIMENSIONS: int
 
+    #llm model config
+    LLM_PROVIDER: str
+    LLM_MODEL: str
+    OLLAMA_BASE_URL: str
+
     # CORS
     ALLOWED_ORIGINS: str
 
