@@ -25,6 +25,10 @@ class Settings(BaseSettings):
     # CORS
     ALLOWED_ORIGINS: str
 
+    #jwt config
+    JWT_SECRET_KEY: str
+    ALGORITHM: str
+
     model_config = SettingsConfigDict(
         env_file="/Users/ranjan/Projects/document-copilot/backend/.env",
         env_file_encoding="utf-8",
