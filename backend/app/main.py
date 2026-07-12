@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+from app.routers import threads
 from app.config import settings
 from app.routers import users
 from app.routers import auth
@@ -22,6 +22,7 @@ app.add_middleware(
 
 app.include_router(router=users.router)
 app.include_router(router =auth.router)
+app.include_router(router=threads.router)
 
 @app.get("/health", tags=["Health"])
 async def health_check():

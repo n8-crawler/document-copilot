@@ -27,7 +27,7 @@ def update_user(request:UserUpdate,current_user:User=Depends(get_current_user),d
 
     return current_user
 
-@router.delete('/delete_me',status_code=status.HTTP_410_GONE)
+@router.delete('/delete_me',status_code=status.HTTP_204_NO_CONTENT)
 def delete_user(current_user:User=Depends(get_current_user),db: Session= Depends(get_db)):
     db.delete(current_user)
     db.commit()
