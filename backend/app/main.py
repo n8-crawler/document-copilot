@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import threads
 from app.config import settings
+from app.routers import messages
+from app.routers import threads
 from app.routers import users
 from app.routers import auth
+from app.routers import chat
 
 app = FastAPI(
     title="Document Copilot API",
@@ -20,10 +22,11 @@ app.add_middleware(
     allow_headers=["*"], 
 )
 
-app.include_router(router=users.router)
-app.include_router(router =auth.router)
-app.include_router(router=threads.router)
-
+app.include_router(router = users.router)
+app.include_router(router = auth.router)
+app.include_router(router = threads.router)
+app.include_router(router = messages.router)
+app.include_router(router = chat.router)
 @app.get("/health", tags=["Health"])
 async def health_check():
     return {

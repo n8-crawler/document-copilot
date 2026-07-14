@@ -9,7 +9,7 @@ def retrieval_pipeline(user_query:str):
     generator = EmbeddingGenerator()
     embeddings = generator.generate_embeddings(user_query)
     
-    matching_chunks = Retriver(db=db).retrive(query_embedding=embeddings)
+    matching_chunks = Retriver(db=db).retrive(query=user_query,query_embedding=embeddings)
     context_builder = [chunk for chunk in matching_chunks] # all chunk is a sql Alchemy object so we retrive its id,document,uuid,content etc..
     return context_builder
 

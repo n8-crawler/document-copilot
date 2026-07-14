@@ -6,7 +6,7 @@ from app.database import get_db
 from app.routers.dependencies import get_current_user
 from app.models.users import User
 from app.schemas.threads import ChatResponse,ChatCreate,ChatUpdate
-from app.services.threads import ThreadService
+from app.services.threadservice import ThreadService
 
 
 router = APIRouter(prefix="/threads",tags=["threads"])

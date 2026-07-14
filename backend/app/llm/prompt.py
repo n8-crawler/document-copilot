@@ -1,7 +1,7 @@
 from app.retrieval.pipeline import retrieval_pipeline
 from app.models.documentchunks import DocumentChunk
 class PromptBuilder:
-    def context(self,user_question:str,chunk_list :list[DocumentChunk]):
+    def build_context(self,chunk_list :list[DocumentChunk]):
         context_text = ""
         for index,chunk in enumerate(chunk_list):
             context_text +=(
@@ -13,7 +13,20 @@ class PromptBuilder:
                 f"{chunk.content}\n\n"
                 f"{'=' * 50}\n\n"
             )
+        return context_text
     
+    def build_history(self,history=None):
+        if not history:return ""
+        chat_history=""
+        for message in history:
+            chat_history += (f"role: {message.role}\nmessage: {message.messages}\n")
+        return chat_history
+
+    def build_prompt(self,user_question:str,chunk_list :list[DocumentChunk],history:None):
+
+        context_text = self.build_context(chunk_list=chunk_list)
+        chat_history = self.build_history(history=history)
+
         prompt = f"""
 
                 You are an expert financial analyst specializing in SEC filings.
@@ -22,7 +35,7 @@ class PromptBuilder:
 
                 Instructions:
 
-                - Answer only from the supplied context.
+                - Answer only from the supplied context and conversation history.
 
                 - Do not make up facts.
 
@@ -35,6 +48,10 @@ class PromptBuilder:
                 - When appropriate, mention which filing the information came from.
 
                 - If user asks for evidence of data u can provide the source url.
+
+                Conversation History:
+
+                {chat_history}
 
                 Context:
 

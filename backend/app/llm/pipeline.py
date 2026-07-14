@@ -11,7 +11,7 @@ def llm_pipeline(user_query:str):
     retriver = Retriver(db=db).retrive(query_embedding=embeddings)
     print('THINKING...finding matches')
     
-    prompt = PromptBuilder().context(user_question=user_query,chunk_list = retriver)
+    prompt = PromptBuilder().build_prompt(user_question=user_query,chunk_list = retriver,chat_history=None)
     print('THINKING....creating prompt')
     message = Llmgenerator().generate(prompt=prompt)
     print("=" * 80)
