@@ -48,7 +48,7 @@ class Chatservice:
 
         # this will call builder.compile() which will call state as per sequence , since all dataclass ChatState values are populated
 
-        return result.assistant_message
+        return result["assistant_message"]
 
         # thread = self.getthread(thread_id=thread_id,current_user=current_user)
         # user_message = self.create_user_message(thread_id=thread_id,current_user=current_user,request=request)
