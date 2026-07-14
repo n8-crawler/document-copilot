@@ -29,6 +29,11 @@ class Settings(BaseSettings):
     JWT_SECRET_KEY: str
     ALGORITHM: str
 
+    #redis config
+    REDIS_HOST: str
+    REDIS_PORT: int
+    REDIS_DB: int
+    
     model_config = SettingsConfigDict(
         env_file="/Users/ranjan/Projects/document-copilot/backend/.env",
         env_file_encoding="utf-8",
