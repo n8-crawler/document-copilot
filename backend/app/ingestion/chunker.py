@@ -6,3 +6,4 @@ class Chunker:
         chunker = HybridChunker()
         chunk_iter = chunker.chunk(dl_doc=document)
         return chunk_iter
+

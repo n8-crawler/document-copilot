@@ -8,7 +8,7 @@ def llm_pipeline(user_query:str):
     embeddings = EmbeddingGenerator().generate_embeddings(user_query)
     print('THINKING....embedding')
 
-    retriver = Retriver(db=db).retrive(query_embedding=embeddings)
+    retriver = Retriver(db=db).retrive(query=user_query,query_embedding=embeddings)
     print('THINKING...finding matches')
     
     prompt = PromptBuilder().build_prompt(user_question=user_query,chunk_list = retriver,chat_history=None)
