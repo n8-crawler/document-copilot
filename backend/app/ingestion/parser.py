@@ -18,24 +18,16 @@ class HTMLParser:
         # downloads -> markdown
 
         PROJECT_ROOT = Path(__file__).resolve().parents[3]
-
-
         download_root = PROJECT_ROOT/"data"/"downloads"
-
         markdown_root = PROJECT_ROOT/"data"/"markdown"
-
         relative_path = html_path.relative_to(download_root)
-
         markdown_path = (markdown_root / relative_path).with_suffix(".md")
 
         # Create folders if they don't exist
 
         markdown_path.parent.mkdir(parents=True,exist_ok=True)
-
         # Save markdown
-
         with open(markdown_path, "w", encoding="utf-8") as f:
-
             f.write(markdown)
 
         return docling_doc
