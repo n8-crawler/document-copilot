@@ -55,11 +55,7 @@ flowchart LR
 
 Frontend:
 
-- Vite + React SPA + TypeScript
-- React Router for routing
-- Tailwind CSS and shadcn/ui for UI
-- `@supabase/supabase-js` for browser auth
-- Vercel AI SDK UI packages for chat state and streaming client behavior
+- React and JS
 
 Backend:
 
@@ -77,7 +73,7 @@ Backend:
 
 Persistence:
 
-- Supabase Auth for email login
+- FastAPI Auth for email login
 - Supabase Postgres for user records, chat threads, chat messages, source documents, chunks, embeddings, full-text search vectors, and citation metadata
 
 ## System Boundaries
