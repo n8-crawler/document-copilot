@@ -5,13 +5,13 @@ This file is the source of truth for any coding agent (Claude Code, Cursor, Code
 ## Stack
 
 - **Backend:** Python + FastAPI
-- **Frontend:** Vite + React SPA + TypeScript
+- **Frontend:** Pending
 - **Database:** Supabase Postgres (users, chats, source documents, chunks)
 - **Migrations:** SQLAlchemy models + Alembic from the backend
 - **Retrieval:** Supabase `pgvector` + Postgres full-text search
 - **Auth:** Supabase Auth
-- **Hosting:** Railway (backend service + frontend service)
-- **LLM + embeddings:** OpenAI
+- **Hosting:** pending
+- **LLM + embeddings:** Llama 3.1 8B + BAAI/bge-large-en-v1.5
 
 Stack is locked unless explicitly changed. Don't propose alternatives without a stated reason.
 
